@@ -1,0 +1,59 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: monks-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: monks123
+      MYSQL_DATABASE: monks_case
+      MYSQL_USER: monks_user
+      MYSQL_PASSWORD: monks123
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./backend/app/db-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pmonks123"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: DockerFile
+    container_name: monks-backend
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: monks_case
+      DB_USER: monks_user
+      DB_PASSWORD: monks123
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --reload
+
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: DockerFile
+    container_name: monks-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev
+
+volumes:
+  db_data:
