@@ -28,6 +28,20 @@ Certifique-se de que o seu arquivo SQL de dump esteja no seguinte local, em rela
 
 ## ✅ 3. Inicialização Completa
 
+### ANTES DE MAIS NADA
+
+Clone o repositório para sua máquina:
+
+```
+git clone https://github.com/Thasyo/monks-case.git
+```
+
+Ou se achar melhor, você pode "zipar" o projeto:
+
+<img width="661" height="508" alt="image" src="https://github.com/user-attachments/assets/d80ee4c8-9c40-48a8-9c83-dbd3db660eaa" />
+
+#### Com o projeto baixado na sua máquina, agora podemos inicializar o projeto!
+
 ### Passo 1: Limpeza e Inicialização do Banco de Dados
 
 É essencial garantir que o banco de dados seja inicializado corretamente com o esquema. O comando a seguir remove quaisquer dados de banco de dados persistentes e força a recriação do MySQL, que carregará o monks_case_dump.sql.
@@ -79,3 +93,4 @@ Após a conclusão da inicialização, a aplicação estará acessível nos segu
 | `docker-compose down -v` | Parada Completa: Remove contêineres, redes e o volume de dados do DB. |
 
 | `docker-compose up -d --build` | Constrói os contêineres em playground. |
+
