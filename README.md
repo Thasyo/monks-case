@@ -26,7 +26,7 @@ Certifique-se de que o seu arquivo SQL de dump esteja no seguinte local, em rela
 
 <code>./backend/app/db-init/monks_case_dump.sql</code>
 
-## 3. Inicialização Completa
+## ✅ 3. Inicialização Completa
 
 ### Passo 1: Limpeza e Inicialização do Banco de Dados
 
@@ -77,4 +77,5 @@ Após a conclusão da inicialização, a aplicação estará acessível nos segu
 | `docker-compose down` | Para e remove apenas os contêineres e redes (mantém os dados). |
 | `docker-compose logs -f` | Exibe os logs de todos os serviços em tempo real. |
 | `docker-compose down -v` | Parada Completa: Remove contêineres, redes e o volume de dados do DB. |
+
 | `docker-compose up -d --build` | Constrói os contêineres em playground. |
