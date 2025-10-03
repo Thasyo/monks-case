@@ -24,5 +24,5 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         raise HTTPException(status_code=401, detail="Token Inválido/Expirado!")
 
 def verify_password(password: str, hashed_password: str):
-    return password == hashed_password # Utilizar futuramente um bcrypt da vida.
+    return password == hashed_password
 

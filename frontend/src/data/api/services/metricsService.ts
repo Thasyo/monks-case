@@ -19,10 +19,10 @@ export const apiFetchMetrics = async (params: MetricsQueryParams): Promise<Metri
     }
 
     try {
-        const response = await axios.get<Metric[]>( // Tipando o array de resposta
+        const response = await axios.get<Metric[]>( 
             `${API_BASE_URL}/metrics/`,
             {
-                params: params, // anexando o objeto de parâmetros à URL como query strings
+                params: params, 
                 headers: {
                     'Authorization': `Bearer ${token}` 
                 }

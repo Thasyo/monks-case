@@ -2,9 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { getMetrics } from '@/domain/usecases/getMetrics';
 import type { Metric } from '@/core/entities/User';
 import { RotateCw } from 'lucide-react';
-
-//shadcn
-import { Button } from '@/components/ui/button'; // Exemplo de path
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -16,13 +14,11 @@ function MetricsPage() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    // Estado para Paginação e Filtros
     const [currentPage, setCurrentPage] = useState(1);
     const [orderBy, setOrderBy] = useState<string>('date');
     const [startDate, setStartDate] = useState<string>('');
     const [endDate, setEndDate] = useState<string>('');
 
-    // Função de busca encapsulada (para ser reutilizada na paginação/filtros)
     const fetchMetrics = useCallback(async () => {
         setLoading(true);
         setError('');
@@ -48,7 +44,6 @@ function MetricsPage() {
         }
     }, [currentPage, orderBy, startDate, endDate]);
 
-    // Esse useEffect() recarrega os dados sempre que os parâmetros de consulta mudarem
     useEffect(() => {
         fetchMetrics();
     }, [fetchMetrics]);
@@ -59,9 +54,8 @@ function MetricsPage() {
         <div className="p-6 space-y-6 max-w-7xl mx-auto">
             <h2 className="text-4xl font-bold tracking-tight text-lime-500 text-center">Relatório de Métricas</h2>
             
-            {/* --- CONTROLES DE FILTRO E ORDENAÇÃO (Usando Flexbox e Componentes Shadcn) --- */}
             <div className="flex flex-col md:flex-row gap-2 items-end">
-                {/* Filtro de Data Início */}
+                
                 <div className="flex flex-col space-y-1">
                     <label htmlFor="start-date" className="text-sm font-medium">Data Início</label>
                     <Input 
@@ -73,7 +67,6 @@ function MetricsPage() {
                     />
                 </div>
                 
-                {/* Filtro de Data Fim */}
                 <div className="flex flex-col space-y-1">
                     <label htmlFor="end-date" className="text-sm font-medium">Data Fim</label>
                     <Input 
@@ -85,7 +78,6 @@ function MetricsPage() {
                     />
                 </div>
 
-                {/* Ordenação */}
                 <div className="flex flex-col space-y-1">
                     <label htmlFor="order-by" className="text-sm font-medium">Ordenar por</label>
                     <Select value={orderBy} onValueChange={setOrderBy}>
@@ -109,10 +101,8 @@ function MetricsPage() {
                 </div>
             </div>
 
-            {/* --- TABELA DE DADOS --- */}
             <div className="border rounded-md w-full">
                 {loading ? (
-                    // Animação de Loading Shadcn/ui Style
                     <div className="flex items-center justify-center h-40">
                         <RotateCw className="h-8 w-8 animate-spin text-primary" /> 
                     </div>
@@ -128,7 +118,6 @@ function MetricsPage() {
                                 <TableHead>Impressions</TableHead>
                                 <TableHead>Interactions</TableHead>
                                 <TableHead className="text-center">Date</TableHead>
-                                {/* Renderização Condicional da Coluna: Cost_micros só para admins */}
                                 {metrics.length > 0 && metrics[0].cost_micros !== undefined && (
                                     <TableHead className="text-right">Cost_micros</TableHead>
                                 )}
@@ -145,7 +134,6 @@ function MetricsPage() {
                                     <TableCell>{metric.impressions}</TableCell>
                                     <TableCell>{metric.interactions}</TableCell>
                                     <TableCell>{metric.date}</TableCell>
-                                    {/* Renderização Condicional da Célula */}
                                     {metric.cost_micros !== undefined && (
                                         <TableCell className="text-right">
                                             {metric.cost_micros}
@@ -158,7 +146,6 @@ function MetricsPage() {
                 )}
             </div>
 
-            {/* --- CONTROLES DE PAGINAÇÃO --- */}
             <div className="flex items-center justify-between space-x-2 py-4">
                 <div className="flex-1 text-sm text-muted-foreground">
                     Exibindo {metrics.length} resultados por página.
@@ -179,7 +166,6 @@ function MetricsPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => setCurrentPage(c => c + 1)} 
-                        // Checagem se há mais páginas: se o resultado for menor que o limite, esta é a última página
                         disabled={metrics.length < ITEMS_PER_PAGE || loading}
                     >
                         Próxima

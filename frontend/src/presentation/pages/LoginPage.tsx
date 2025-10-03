@@ -28,7 +28,6 @@ function LoginPage({onLoginSuccess}: LoginPageProps) {
 
             onLoginSuccess();
         } catch (err: any) {
-            // O erro é tipado como 'any' porque vem de uma Promise rejeitada
             setError(err.message); 
         }
     };

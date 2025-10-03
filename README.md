@@ -20,7 +20,7 @@ Link para instalar o Docker: https://www.docker.com/get-started/
 
 ## ⚙️ 2. Estrutura Necessária
 
-O projeto espera que o seu arquivo de inicialização do banco de dados ( <code>monks_case_dump.sql</code> ) esteja presente em um caminho específico para que o contêiner do MySQL possa carregar o esquema ( <code>monks_case</code> ) e as tabelas ( <code>users, metrics</code> ) na primeira execução.
+É necessário que o seu arquivo de inicialização do banco de dados ( <code>monks_case_dump.sql</code> ) esteja presente em um caminho específico para que o contêiner do MySQL possa carregar o esquema ( <code>monks_case</code> ) e as tabelas ( <code>users, metrics</code> ) na primeira execução.
 
 Certifique-se de que o seu arquivo SQL de dump esteja no seguinte local, em relação ao <strong>docker-compose.yml</strong>:
 

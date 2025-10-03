@@ -24,7 +24,7 @@ def get_metrics(
     if order_by:
         query = query.order_by(getattr(Metric, order_by))
     
-    query = query.offset(skip).limit(limit) # aplicando paginação.
+    query = query.offset(skip).limit(limit)
 
     results = query.all()
 
