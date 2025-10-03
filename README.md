@@ -30,7 +30,7 @@ Certifique-se de que o seu arquivo SQL de dump esteja no seguinte local, em rela
 
 ### ANTES DE MAIS NADA
 
-Clone o repositório para sua máquina:
+#### Clone o repositório para sua máquina:
 
 ```
 git clone https://github.com/Thasyo/monks-case.git
@@ -38,9 +38,13 @@ git clone https://github.com/Thasyo/monks-case.git
 
 Ou se achar melhor, você pode "zipar" o projeto:
 
-<img width="661" height="508" alt="image" src="https://github.com/user-attachments/assets/d80ee4c8-9c40-48a8-9c83-dbd3db660eaa" />
+<img width="600" height="508" alt="image" src="https://github.com/user-attachments/assets/d80ee4c8-9c40-48a8-9c83-dbd3db660eaa" />
 
-#### Com o projeto baixado na sua máquina, agora podemos inicializar o projeto!
+#### Abra o Docker Desktop na sua máquina:
+
+<img width="600" height="796" alt="image" src="https://github.com/user-attachments/assets/65179b22-fc6c-49f6-ab72-e291206ca99f" />
+
+### Com o projeto baixado na sua máquina e o Docker Desktop iniciado, agora podemos inicializar o projeto!
 
 ### Passo 1: Limpeza e Inicialização do Banco de Dados
 
@@ -93,4 +97,5 @@ Após a conclusão da inicialização, a aplicação estará acessível nos segu
 | `docker-compose down -v` | Parada Completa: Remove contêineres, redes e o volume de dados do DB. |
 
 | `docker-compose up -d --build` | Constrói os contêineres em playground. |
+
 
